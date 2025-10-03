@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductDao } from '../models/product-dao';
 import { Product } from '../services/product';
+import { ProductApi } from '../services/product-api';
+import { ProductApiDTO } from '../models/product-api-dto';
 @Component({
   selector: 'app-product-detail',
   imports: [],
@@ -12,10 +14,16 @@ import { Product } from '../services/product';
 export class ProductDetail implements OnInit{
   id = 0
 
-  product:ProductDao | undefined
+  //local
+  // product:ProductDao | undefined
+
+  //api
+  product:ProductApiDTO | undefined
 
   constructor(private activatedRoute:ActivatedRoute, 
-    private productService:Product){
+    private productService:Product,
+    private productApiService:ProductApi
+  ){
 
   }
 
@@ -36,8 +44,19 @@ export class ProductDetail implements OnInit{
     console.log(limit);
 
     console.log(this.id)
-    this.product = this.productService.getProductById(this.id)
-    console.log(this.product)
+
+    // for data from local
+    // this.product = this.productService.getProductById(this.id)
+    // console.log(this.product)
+
+    // for data from API
+
+    this.productApiService.getProductById(this.id).subscribe(
+      {
+        next:(data)=> this.product = data,
+        error:(error)=> console.log(error)
+      }
+    )
 
 
   }

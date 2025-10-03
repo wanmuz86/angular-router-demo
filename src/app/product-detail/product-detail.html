@@ -2,8 +2,12 @@
     
     @if (product !== undefined){
     <h4>Product Detail for id {{product.id}}</h4>
-    <h5>{{[product.name]}}</h5>
-    <p>{{product.price}}</p>
+    <h5>{{[product.title]}}</h5>
+     <h6>{{product.price}}
+         <span class="badge bg-dark text-light">{{product.category}}</span></h6>
+    <img [src]="product.image" [alt]="product.title">
+   
+    <p>{{product.description}}</p>
     }
     @else {
         <p>Product of given id not found</p>
