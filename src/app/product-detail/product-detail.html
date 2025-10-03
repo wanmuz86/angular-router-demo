@@ -1,1 +1,11 @@
-<h2>Product page for {{id}}</h2>
+<div class="card p-3 bg-light my-3">
+    
+    @if (product !== undefined){
+    <h4>Product Detail for id {{product.id}}</h4>
+    <h5>{{[product.name]}}</h5>
+    <p>{{product.price}}</p>
+    }
+    @else {
+        <p>Product of given id not found</p>
+    }
+</div>

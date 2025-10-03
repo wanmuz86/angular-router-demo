@@ -1,1 +1,23 @@
-<p>product-list works!</p>
+
+<h2>Product List</h2>
+@for (product of products; track product.id) {
+    <!-- card - give the curved effect on the div 
+    p-3 = padding add space inside the div
+    
+    (primary/secondary/light/dark/success/danger/warning)
+    bg-light = add light grey background colour in the div 
+    my-3 = add space up and down between div
+    
+    -->
+    <div class="card p-3 bg-light my-3">
+        <h4>{{product.name}}</h4>
+        <p>{{product.price | currency:'MYR'}}</p>
+        <!-- 
+        btn add button style
+        btn-primary - color primary (blue)
+        -->
+        <a [routerLink]="['products',product.id]" 
+        class="btn btn-primary">
+            View Product</a>
+    </div>
+}
